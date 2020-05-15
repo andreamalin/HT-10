@@ -1,5 +1,5 @@
 # Algoritmo de Floyd
-Este programa lleva a cabo la ejecución de un archivo txt el cual contendrá ciudades.
+Este programa lleva a cabo la ejecución de un archivo txt el cual contendrá ciudad 1, ciudad 2, distancia entre ciudades.
 
 ### Funciones 🚀
 1. Recibe guategrafo.txt el cual la distancia en km desde la ciudad 1 hasta la ciudad 2.
