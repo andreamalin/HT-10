@@ -123,5 +123,38 @@ public class Floyd{
 	}
 
 
-	public void addPath()
+	public String graphCenter(){
+		Integer horizontal_pos = 0;
+		Integer centro = infinity;
+		ArrayList<String> places_names = places.get(0).getHorizontal();
+		boolean primera_vez = true;
+		
+		for (int actual=0; actual<size; actual++) {
+			Integer[] vertical = new Integer[size];
+			int suma = 0;
+			for (int i=0; i<size; i++) {
+				vertical[i] = graph[i][actual]; //Vertical
+			}
+			for (int i:vertical){
+				if (i==-1) {	/*Es infinito*/
+					suma=infinity;
+					break;
+				}else{			/*Se suma*/
+					suma+=i;
+				}
+			}	
+
+			if (primera_vez && suma!=infinity) { /*Si es la primera vez, el primer valor sera el centro*/
+				centro=suma;
+				primera_vez=false;
+				horizontal_pos=actual;
+			} else if (suma<centro && suma!=infinity) { /*Se revisa si es menor al centro actual*/
+				centro=suma;
+				horizontal_pos=actual;
+			}
+		}
+
+		return "\nCiudad en el centro> "+places_names.get(horizontal_pos); /*Se retorna el nombre de la ciudad*/
+	}
+
 }
