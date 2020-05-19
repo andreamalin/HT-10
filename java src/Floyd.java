@@ -1,3 +1,12 @@
+/**********************************************************
+*Floyd.java   		      	Fecha de creacion: 16 de mayo
+*                           Ultima fecha de modificacion: 18 de mayo
+*                           
+*Clase encargada de calcular el algoritmo de floyd, ademas de
+*agregar los nodos a la matriz y cambiar los valores entre ciudades
+*
+*@author Andrea Amaya #19357 
+**********************************************************/
 import java.util.*;
 
 public class Floyd{
@@ -154,7 +163,25 @@ public class Floyd{
 			}
 		}
 
-		return "\nCiudad en el centro> "+places_names.get(horizontal_pos); /*Se retorna el nombre de la ciudad*/
+		if (centro!=infinity) {
+			return "\nCiudad en el centro> "+places_names.get(horizontal_pos); /*Se retorna el nombre de la ciudad*/
+		} else {
+			return "\nCiudad en el centro> Ninguna "; /*Se retorna que no hay ciudad*/
+		}
+		
+	}
+
+	public String deleteDistance(String place1, String place2, Integer distance){
+		for (Place i: places) { //Se revisa que exista
+			if (i.getPlace1().equalsIgnoreCase(place1) && i.getPlace2().equalsIgnoreCase(place2)) {
+				places.remove(i);
+				places.add(new Place(place1, place2, -1));
+				return "\n> Se elimino la ruta "+place1+"-"+place2+" debido al trafico";
+			} else {
+				return "\n> La ruta no existe";
+			}			
+		} 
+		return "\n> La ruta no existe";
 	}
 
 }

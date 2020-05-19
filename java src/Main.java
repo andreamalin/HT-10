@@ -1,6 +1,6 @@
 /**********************************************************
-*Main.java   		      	Fecha de creacion: 26 de marzo
-*                           Ultima fecha de modificacion: 30 de marzo
+*Main.java   		      	Fecha de creacion: 16 de mayo
+*                           Ultima fecha de modificacion: 18 de mayo
 *                           
 *Clase encargada de interactuar con el usuario
 *
@@ -75,31 +75,41 @@ public class Main{
 				/*Se muestra*/
 				System.out.println(algorithm.graphCenter());
 			} else if (opcion==3) {
-				/*Se pide*/
+				System.out.println("\na. Interrupcion de trafico\nb. Establecer conexion entre ciudades");
+				String opcion3 = scan.next();
+
+				/*Independiente de la opcion, se pide la ciudad de origen y destino*/
 				System.out.println("\nIngrese el nombre de la ciudad de origen");
 				String origen = scan.next();
 				System.out.println("Ingrese el nombre de la ciudad de destino");
 				String destino = scan.next();
-				System.out.println("Ingrese la distancia en km para llegar del origen al destino");
 
-				while(seguir){		/*Defensiva para pedir la opcion*/
-					String distancia_pos = scan.next();
-					try{
-						Integer distancia = Integer.parseInt(distancia_pos);
-						algorithm.setPlace(origen, destino, distancia); //Se agrega al vector
-						seguir = false;
-					} catch (Exception e){
-						System.out.println("Ingreso invalido");		
-					}				
+				if (opcion3.equalsIgnoreCase("a")) {
+					algorithm.deleteDistance(origen, destino, -1);
+				}  else {
+					/*Se pide*/
+					System.out.println("Ingrese la distancia en km para llegar del origen al destino");
+
+					while(seguir){		/*Defensiva para pedir la opcion*/
+						String distancia_pos = scan.next();
+						try{
+							Integer distancia = Integer.parseInt(distancia_pos);
+							algorithm.setPlace(origen, destino, distancia); //Se agrega al vector
+							seguir = false;
+						} catch (Exception e){
+							System.out.println("Ingreso invalido");		
+						}				
+					}
+					seguir = true;
 				}
-				seguir = true;
 
 				/*Se muestra*/
 				algorithm.setMatrix();							//Se modifica la matriz con el nuevo destino
 				algorithm.floydAlgorithm();						//Se realiza nuevamente el algoritmo de floyd
 				algorithm.showMatrix();							//Se muestra en pantalla
+				System.out.println(algorithm.graphCenter());	//Se realiza el centro
 			}
 		}
 		System.out.println("__________________________________________\nGRACIAS POR USAR EL PROGRAMA :D");
-	}
+	}	
 }
