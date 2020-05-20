@@ -33,7 +33,7 @@ public class Floyd{
 				for (int j=0; j<size; j++) {		//Se trabaja la misma i el tamano del array
 					if (!(i==j) && !(j==actual) && !(i==actual)) {	//Si no se esta en la diagonal ni en la iteracion
 	 					if (!(iteracion_v[i]==-1 || iteracion_h[j]==-1)) { //Se revisa que ninguno sea infinito
-							Integer iteracion_actual = iteracion_v[i]*iteracion_h[j];		//Se obtiene la multiplicacion de la iteracion
+							Integer iteracion_actual = iteracion_v[i]+iteracion_h[j];		//Se obtiene la multiplicacion de la iteracion
 							Integer posicion_actual = graph[i][j];							//Se obtiene el numero actual apuntado
 
 							//Si la iteracion actual es menor a la distancia actual o la distancia actual es infinita
@@ -140,25 +140,27 @@ public class Floyd{
 		
 		for (int actual=0; actual<size; actual++) {
 			Integer[] vertical = new Integer[size];
-			int suma = 0;
+			int maximo = 0;
 			for (int i=0; i<size; i++) {
 				vertical[i] = graph[i][actual]; //Vertical
 			}
 			for (int i:vertical){
 				if (i==-1) {	/*Es infinito*/
-					suma=infinity;
+					maximo=infinity;
 					break;
-				}else{			/*Se suma*/
-					suma+=i;
+				}else{			/*Se toma el maximo*/
+					if (i>maximo) {
+						maximo = i;
+					}
 				}
 			}	
 
-			if (primera_vez && suma!=infinity) { /*Si es la primera vez, el primer valor sera el centro*/
-				centro=suma;
+			if (primera_vez && maximo!=infinity) { /*Si es la primera vez, el primer valor sera el centro*/
+				centro=maximo;
 				primera_vez=false;
 				horizontal_pos=actual;
-			} else if (suma<centro && suma!=infinity) { /*Se revisa si es menor al centro actual*/
-				centro=suma;
+			} else if (maximo<centro && maximo!=infinity) { /*Se revisa si es menor al centro actual*/
+				centro=maximo;
 				horizontal_pos=actual;
 			}
 		}
