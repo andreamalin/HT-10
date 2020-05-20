@@ -7,7 +7,7 @@ public class Test3 {
 	@Test
 	public void test() {
 		Floyd algorithm = new Floyd();
-		Integer[][] graph = {{0, 30, 750, 11250}, {-1, 0, 25, 375}, {-1, -1, 0, 15}, {-1, -1, -1, 0}};
+		Integer[][] graph = {{0, 30, 55, 70}, {-1, 0, 25, 40}, {-1, -1, 0, 15}, {-1, -1, -1, 0}};
 				
 		algorithm.setPlace("Mixco", "Antigua",  30); //Se agrega al dict
 		algorithm.setPlace("Antigua", "Escuintla",  25); //Se agrega al dict
